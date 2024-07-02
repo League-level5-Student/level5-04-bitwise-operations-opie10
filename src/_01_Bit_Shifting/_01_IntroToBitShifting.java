@@ -21,8 +21,8 @@ package _01_Bit_Shifting;
  * All the bits move one place to the right, a 0 is added to the left, and the
  * rightmost bit is removed.
  * The code to right shift uses '>>' or '>>>'.
- *      byte b = 0b00010011;
- *      b = b >> 2;         // shift 2 to the right 00000100
+    byte b = 0b00010011;
+    b = b >> 2;         // shift 2 to the right 00000100
  * 
  * The difference between >> and >>> is when there are negative int or long
  * integers and the leftmost bit (sign bit) is a 1. For example,
