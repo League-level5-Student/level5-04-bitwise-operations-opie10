@@ -1,5 +1,7 @@
 package _03_Printing_Binary;
 
+import java.util.Iterator;
+
 public class _01_BinaryPrinter {
     /*
      * Complete the methods below so they print the passed in parameter in binary.
@@ -8,14 +10,18 @@ public class _01_BinaryPrinter {
      */
 
 
-    public void printByteBinary(byte b) {
+    public static void printByteBinary(byte b) {
         // We first want to print the bit in the one's place
-
+    	
         // Shift b seven bits to the right
-
+    
         // Use the & operator to "mask" the bit in the one's place
         // This can be done by "anding" (&) it with the value of 1
-
+    	for (int i = 0; i < 8; i++) {
+    	
+    		System.out.println(b&1);
+		}
+    	
         // Print the result using System.out.print (NOT System.out.println)
 
         //Use this method to print the remaining 7 bits of b
@@ -48,6 +54,8 @@ public class _01_BinaryPrinter {
     }
 
     public static void main(String[] args) {
+    	byte e = 0b00100010;
         // Test your methods here
+    	printByteBinary(e);
     }
 }

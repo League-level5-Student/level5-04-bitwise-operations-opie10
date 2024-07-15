@@ -2,6 +2,8 @@ package _02_AND_OR_and_XOR;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.function.BinaryOperator;
+
 import org.junit.jupiter.api.Test;
 
 /*
@@ -27,56 +29,74 @@ import org.junit.jupiter.api.Test;
  *      11111111 11111111 11111111 11110001   // rotate left by 1
  */
 public class _02_Rotate {
-    
-    int rotateLeft(int value, int rotateAmount) {
-    	return 0;
-    }
-    
-    int rotateRight(int value, int rotateAmount) {
-    	for (int i = 0; i < rotateAmount; i++) {
-			
-    		
-        	int shift = 0;
-        	if ((value&1)==1) {
-    		 shift = 1<<31;
-    		}
-        	value = value>>1;
-        	value = value|shift;
-        	}
-        	return value;
-    }
-    
-    @Test
-    void testRotateLeft() {
-        int i = -8;
 
-        int result = rotateLeft(i, 1);
-        System.out.println("Left rotate tests");
-        System.out.println("Expected: " + Integer.toBinaryString(-15));
-        System.out.println("Actual  : " + Integer.toBinaryString(result));
-        assertEquals(-15, result);
-        
-        result = rotateLeft(i, 3);
-        System.out.println();
-        System.out.println("Expected: " + Integer.toBinaryString(-57));
-        System.out.println("Actual  : " + Integer.toBinaryString(result));
-        assertEquals(-57, result);
-    }
-    
-    @Test
-    void testRotateRight() {
-        int i = 7;
-        
-        int result = rotateRight(i, 1);
-        System.out.println("\nRight rotate tests");
-        System.out.println("Expected: " + Integer.toBinaryString(-2147483645));
-        System.out.println("Actual  : " + Integer.toBinaryString(result));
-        assertEquals(-2147483645, result);
-        
-        result = rotateRight(i, 16);
-        System.out.println();
-        System.out.println("Expected: " + Integer.toBinaryString(458752));
-        System.out.println("Actual  : " + Integer.toBinaryString(result));
-        assertEquals(458752, result);
-    }
+	int rotateLeft(int value, int rotateAmount) {
+		for (int i = 0; i < rotateAmount; i++) {
+
+			int shift = 0;
+			if ((value & (1 << 31)) == (1 << 31)) {
+				shift = 1;
+			}
+
+			value = value << 1;
+
+			value = value | shift;
+
+		}
+
+		return value;
+	}
+
+	int rotateRight(int value, int rotateAmount) {
+
+		for (int i = 0; i < rotateAmount; i++) {
+
+			int shift = 0;
+			if ((value & 1) == 1) {
+				shift = 1 << 31;
+			}
+
+			value = value >> 1;
+			value = value & ~(1 << 31);
+
+			value = value | shift;
+
+		}
+
+		return value;
+	}
+
+	@Test
+	void testRotateLeft() {
+		int i = -8;
+
+		int result = rotateLeft(i, 1);
+		System.out.println("Left rotate tests");
+		System.out.println("Expected: " + Integer.toBinaryString(-15));
+		System.out.println("Actual  : " + Integer.toBinaryString(result));
+		assertEquals(-15, result);
+
+		result = rotateLeft(i, 3);
+		System.out.println();
+		System.out.println("Expected: " + Integer.toBinaryString(-57));
+		System.out.println("Actual  : " + Integer.toBinaryString(result));
+		assertEquals(-57, result);
+	}
+
+	@Test
+	void testRotateRight() {
+		int i = 7;
+
+		int result = rotateRight(i, 1);
+		System.out.println("\nRight rotate tests");
+		System.out.println("Expected: " + Integer.toBinaryString(-2147483645));
+		System.out.println("Actual  : " + Integer.toBinaryString(result));
+		assertEquals(-2147483645, result);
+
+		result = rotateRight(i, 16);// 16
+		System.out.println();
+		System.out.println("Expected: " + Integer.toBinaryString(458752));
+		System.out.println("Actual  : " + Integer.toBinaryString(result));
+		assertEquals(458752, result);
+	}
 }
