@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.util.Iterator;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -52,6 +53,11 @@ public class _02_HexadecimalPrinter implements ActionListener {
      * You don't have to handle negative numbers unless you want the challenge!
      */
     String binaryToHex(String binaryStr) {
+    	String end = "";
+    	for (int i = 8; i -->1;) {
+    		System.out.println(binaryStr.substring((i*4)-4, (i*4)));
+			binaryStr.substring((i*4)-4, (i*4));
+		}
         return "-";
     }
     
