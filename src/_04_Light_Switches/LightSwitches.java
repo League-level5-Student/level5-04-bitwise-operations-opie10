@@ -55,7 +55,9 @@ public class LightSwitches implements GameControlScene {
      * index = 6        // return true if pink is on (bit 6 == 1)
      */
     boolean isLightOn(int index) {
-        return false;
+    	
+    	 return (lightsOnOff >> index & 1) == 1;
+       
     }
     
     /*
@@ -63,7 +65,8 @@ public class LightSwitches implements GameControlScene {
      * index = 4        // turn off yellow only (set bit 4 = 1)
      */
     void turnLightOn(int index) {
-        
+    	
+    	lightsOnOff |= (1 << index);
     }
     
     /*
@@ -102,6 +105,24 @@ public class LightSwitches implements GameControlScene {
     void toggleLights(int lightsBitmap) {
         
     }
+    int rotateRight(int value, int rotateAmount) {
+
+		for (int i = 0; i < rotateAmount; i++) {
+
+			int shift = 0;
+			if ((value & 1) == 1) {
+				shift = 1 << 31;
+			}
+
+			value = value >> 1;
+			value = value & ~(1 << 31);
+
+			value = value | shift;
+
+		}
+
+		return value;
+	}
     
     void runLightSequence1() {
         workQueue.add(()->turnMultiLightsOff(0xFF));
